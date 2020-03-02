@@ -20,16 +20,16 @@ MASTER['memory'] = config_file.fetch('master').fetch('memory')
 Vagrant.configure("2") do |config|
     config.ssh.insert_key = false
 
-    config.vm.define "k8s-master" do |master|
+    config.vm.define "master-1" do |master|
         master.vm.box = IMAGE_NAME
         master.vm.provider :virtualbox do |v|
           v.cpus = MASTER['cpus']
           v.memory = MASTER['memory']
         end
         master.vm.network "private_network", ip: "192.168.50.10"
-        master.vm.hostname = "k8s-master"
+        master.vm.hostname = "master-1"
         master.vm.provision "ansible" do |ansible|
-            ansible.playbook = "kubernetes-setup/master-playbook.yml"
+            ansible.playbook = "setup/master-playbook.yml"
             ansible.extra_vars = {
                 node_ip: "192.168.50.10",
             }
@@ -46,7 +46,7 @@ Vagrant.configure("2") do |config|
             node.vm.network "private_network", ip: "192.168.50.#{i + 10}"
             node.vm.hostname = "node-#{i}"
             node.vm.provision "ansible" do |ansible|
-                ansible.playbook = "kubernetes-setup/node-playbook.yml"
+                ansible.playbook = "setup/node-playbook.yml"
                 ansible.extra_vars = {
                     node_ip: "192.168.50.#{i + 10}",
                 }
