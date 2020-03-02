@@ -13,6 +13,11 @@ The pre-requistes for this are [Ansible](https://github.com/ansible/ansible), [V
 
 ## Quickstart
 
+### Clone
+```
+git clone https://github.com/mzima/maxikube
+```
+
 ### Start / Stop / Destroy
 ```
 vagrant up
