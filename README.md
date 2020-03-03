@@ -36,7 +36,7 @@ vagrant ssh master-1
 kubectl get all
 ```
 
-### kubectl on your local system
+#### kubectl on your local system
 
 You need to install kubectl as described here: https://kubernetes.io/docs/tasks/tools/install-kubectl/.
 
@@ -47,7 +47,7 @@ export KUBECONFIG=~/.kube/config-maxikube:$KUBECONFIG
 kubectl get all
 ```
 
-# Configuration
+## Configuration
 The main folder contains a `config.yaml` file, which can be used to configure your Maxikube Kubernetes cluster. The following things can be changed:
 
 * K8s nodes count
