@@ -18,10 +18,10 @@ The pre-requistes for this are [Ansible](https://github.com/ansible/ansible), [V
 git clone https://github.com/mzima/maxikube
 ```
 
-### Start / Stop / Destroy Maxikube
+### Start / Halt / Destroy Maxikube
 ```
 vagrant up
-vagrant stop
+vagrant halt
 vagrant destroy
 ```
 
