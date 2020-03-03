@@ -115,6 +115,21 @@
     become: false
     local_action: copy content="{{ join_command.stdout_lines[0] }}" dest="./join-command"
 
+  - name: Get kube config content
+    command: cat .kube/config
+    register: kubeconfig_content
+
+  - name: Create local .kube directory
+    become: false
+    local_action:
+      module: file
+      path: ~/.kube
+      state: directory
+
+  - name: Copy kube/config content to local file
+    become: false
+    local_action: copy content="{{ kubeconfig_content.stdout }}" dest="~/.kube/config-maxikube"
+
   handlers:
     - name: docker status
       service: name=docker state=started

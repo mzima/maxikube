@@ -5,6 +5,6 @@ master:
   memory: 2048
 
 node:
+  count: 2
   cpus: 1
   memory: 1024
-  count: 2

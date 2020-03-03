@@ -23,8 +23,8 @@ Vagrant.configure("2") do |config|
     config.vm.define "master-1" do |master|
         master.vm.box = IMAGE_NAME
         master.vm.provider :virtualbox do |v|
-          v.cpus = MASTER['cpus']
-          v.memory = MASTER['memory']
+            v.cpus = MASTER['cpus']
+            v.memory = MASTER['memory']
         end
         master.vm.network "private_network", ip: "192.168.50.10"
         master.vm.hostname = "master-1"
@@ -36,21 +36,23 @@ Vagrant.configure("2") do |config|
         end
     end
 
-    (1..NODE['count']).each do |i|
-        config.vm.define "node-#{i}" do |node|
-            node.vm.box = IMAGE_NAME
-            node.vm.provider :virtualbox do |v|
-              v.cpus = NODE['cpus']
-              v.memory = NODE['memory']
+    if NODE['count'] > 0
+        (1..NODE['count']).each do |i|
+            config.vm.define "node-#{i}" do |node|
+                node.vm.box = IMAGE_NAME
+                node.vm.provider :virtualbox do |v|
+                    v.cpus = NODE['cpus']
+                    v.memory = NODE['memory']
+                end
+                node.vm.network "private_network", ip: "192.168.50.#{i + 10}"
+                node.vm.hostname = "node-#{i}"
+                node.vm.provision "ansible" do |ansible|
+                    ansible.playbook = "setup/node-playbook.yml"
+                    ansible.extra_vars = {
+                        node_ip: "192.168.50.#{i + 10}",
+                    }
+                end
             end
-            node.vm.network "private_network", ip: "192.168.50.#{i + 10}"
-            node.vm.hostname = "node-#{i}"
-            node.vm.provision "ansible" do |ansible|
-                ansible.playbook = "setup/node-playbook.yml"
-                ansible.extra_vars = {
-                    node_ip: "192.168.50.#{i + 10}",
-                }
-           end
         end
     end
 end
