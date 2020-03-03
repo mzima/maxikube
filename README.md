@@ -9,11 +9,11 @@ A lot of stuff in this repository is based on this blog post:
 
 ## Requirements
 
-The pre-requistes for this are [Ansible](https://github.com/ansible/ansible), [Vagrant](https://www.vagrantup.com) and [VirtualBox](https://www.virtualbox.org), installed on the PC you intend to run it on, and 3 GB of RAM.
+The pre-requistes for this are [Ansible](https://github.com/ansible/ansible), [Vagrant](https://www.vagrantup.com) and [VirtualBox](https://www.virtualbox.org), installed on the PC you intend to run it on, and 4 GB of RAM.
 
 ## Quickstart
 
-### Clone
+### Install
 ```
 git clone https://github.com/mzima/maxikube
 ```
