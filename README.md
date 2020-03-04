@@ -25,28 +25,6 @@ $ vagrant halt
 $ vagrant destroy
 ```
 
-### How to use kubectl with Maxikube
-
-#### kubectl on the master node
-
-Ssh into the master node to use kubectl from there:
-
-```
-$ vagrant ssh master-1
-$ kubectl get all
-```
-
-#### kubectl on your local system
-
-You need to install kubectl as described here: https://kubernetes.io/docs/tasks/tools/install-kubectl/.
-
-The Vagrant script will automatically save the Kubernetes context config file to `~/.kube/config-maxikube` on your local machine, however you might have to modify your `$KUBECONFIG` environment variable:
-
-```
-$ export KUBECONFIG=~/.kube/config-maxikube:$KUBECONFIG
-$ kubectl get all
-```
-
 ## Configuration
 The main folder contains a `config.yaml` file, which can be used to configure your Maxikube Kubernetes cluster. The following things can be changed:
 
@@ -68,3 +46,24 @@ node:
   cpus: 1
   memory: 1024
 ````
+
+## How to use kubectl with Maxikube
+
+#### On the master node
+
+Ssh into the master node to use kubectl from there:
+```
+$ vagrant ssh master-1
+$ kubectl get all
+```
+
+#### On your local system
+
+You need to install kubectl as described here: https://kubernetes.io/docs/tasks/tools/install-kubectl/.
+
+The Vagrant script will automatically save the Kubernetes context config file to `~/.kube/config-maxikube` on your local machine, however you might have to modify your `$KUBECONFIG` environment variable:
+```
+$ export KUBECONFIG=~/.kube/config-maxikube:$KUBECONFIG
+$ kubectl get all
+```
+
